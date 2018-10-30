@@ -1,0 +1,52 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+
+
+# The name of this app. Must be unique within a project.
+name: myapptest
+
+# The toolstack used to build the application.
+type: php:7.0
+build:
+    flavor: composer
+
+# Enable extensions required by Magento 2
+runtime:
+    extensions:
+        - mcrypt
+        - redis
+        - xsl
+        - json
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+    database: "mysql:mysql"
+    redis: "redis:redis"
+
+# The configuration of app when it is exposed to the web.
+web:
+    locations:
+        "/":
+            # The public directory of the app, relative to its root.
+            root: "pub"
+            # The front-controller script to send non-static requests to.
+            passthru: "/index.php"
+            index:
+                - index.html
+            expires: -1
+            scripts: true
+            allow: false
+
+
+# The size of the persistent disk of the application (in MB).
+disk: 20480
+
+variables:
+    env:
+        ENVIRONMENT: 'local'
+    php:
+        memory_limit: 2048M
+    

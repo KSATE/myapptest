@@ -1,0 +1,15 @@
+# The services of the project.
+#
+# Each service listed will be deployed
+# to power your Platform.sh project.
+
+mysql:
+    type: mysql:10.0
+    disk: 20480
+
+redis:
+    type: redis:3.0
+
+test:
+    type: mysql:10.0
+    disk: 4096
